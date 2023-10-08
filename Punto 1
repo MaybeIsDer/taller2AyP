@@ -1,0 +1,53 @@
+package tester;
+
+import java.util.Scanner;
+
+public class Tester {
+
+    public static Scanner sc = new Scanner(System.in);
+
+    public static int validarBase() {
+        int base;
+        base = sc.nextInt();
+        while ((base > 10) || (base < 2)) {
+            System.out.println(" Inválido ");
+            base = sc.nextInt();
+        }
+        return base;
+    }
+    
+    public static long convertir(int num, int baseOriginal, int baseAConvertir){
+        long numConvertido;
+        int iteraciones;
+        
+        numConvertido = 0;
+        iteraciones = 0;
+        while ((num + num / baseAConvertir) != 0) {
+            numConvertido = (numConvertido + ((int) (Math.pow(baseOriginal, iteraciones)) * (num % baseAConvertir)));
+            num = num / baseAConvertir;
+            iteraciones++;
+        }
+        
+        return numConvertido;
+    }
+
+    public static void main(String[] args) {
+        int num, baseOriginal, baseAConvertir;
+        long numConvertido;
+
+        System.out.print(" Ingrese num: ");
+        num = sc.nextInt();
+
+        System.out.print(" Ingrese base de num: ");
+        baseOriginal = validarBase();
+
+        System.out.print(" Ingrese base a convertir: ");
+        baseAConvertir = validarBase();
+        
+        
+        numConvertido = convertir(num, baseOriginal, 10);
+        numConvertido= convertir((int) numConvertido, 10, baseAConvertir);
+        
+        System.out.println("El numero "+num+" en base "+baseOriginal+" es igual a "+numConvertido+ " en base "+baseAConvertir);
+    }
+}
