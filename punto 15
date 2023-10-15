@@ -1,0 +1,26 @@
+    static Scanner read = new Scanner(System.in);
+
+    public static void facPrimos(int num) {
+        int vPrimos[] = new int[100];
+        int k = 0;
+        
+        for (int i = 1; i <= num; i++) {
+            if (num % i == 0) {
+                vPrimos[k] = i;
+                k++;
+            }
+        }
+        
+        System.out.printf("%d tiene %d factores primos y son: \n     ", num, k);
+        for (int i = 0; i < k; i++) {
+            System.out.printf(" [ %d ] ", vPrimos[i]);
+        }
+        System.out.println();
+    }
+
+
+public static void main(String[] args) {    
+        System.out.print(" Ingrese numero a evaluar:  ");
+        int num = read.nextInt();
+        facPrimos(num);
+    }
