@@ -1,0 +1,52 @@
+
+    static Scanner read = new Scanner(System.in);
+
+    public static void validWord(String Cadena) {
+        char caracter;
+        boolean state = true;
+
+        while (state) {
+            state = false;
+            for (int i = 0; i < Cadena.length(); i++) {
+                caracter = Cadena.charAt(i);
+                if (caracter >= '0' && caracter <= '9') {
+                    System.out.println("Se encontró un número en la cadena. Ingresela nuevamente");
+                    Cadena = read.nextLine();
+                    state = true;
+                }
+            }
+        }
+    }
+    
+    public static String comparar(String cadena1, String cadena2) {
+        char charA, charB;
+        int i = 1;
+        charA = cadena1.charAt(0);
+        charB = cadena2.charAt(0);
+
+        while (((int) charA == (int) charB)) {
+            charA = cadena1.charAt(i);
+            charB = cadena2.charAt(i);
+            i++;
+        }
+
+        if (((int) charA < (int) charB)) {
+            return cadena1;
+        } else {
+            return cadena2;
+        }
+    }
+
+    public static void main(String[] args) {
+        String cad1, cad2;
+        System.out.println(" [ !! ] Ingrese Cadenas A Comparar \n      Cadena #1: ");
+        
+        cad1 = read.nextLine();
+        validWord(cad1);
+        
+        System.out.println("      Cadena #2");
+        cad2 = read.nextLine();
+        validWord(cad2);
+        
+        System.out.printf("\n[ !! ] Primera Cadena Ordenada Alfabeticamente \n      '%s'\n",comparar(cad1,cad2));
+    }
