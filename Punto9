@@ -1,0 +1,70 @@
+
+    static Scanner read = new Scanner(System.in);
+
+    public static String validarNota(String Nota) {
+        while (Float.parseFloat(Nota) > 5 || Float.parseFloat(Nota) < 0) {
+            System.out.println(" Nota Invalida, Ingresa Nuevamente ");
+            Nota = read.next();
+        }
+        return Nota;
+    }
+
+    public static void main(String[] args) {
+        int N, perdidas, count;
+        float sum, prom, sumGeneral, promGeneral, mayor;
+        String M[][] = new String[100][100];
+        String temp, codMayor;
+
+        codMayor = "";
+        temp = "";
+        count = 0;
+        sumGeneral = 0;
+        promGeneral = 0;
+        mayor = -1;
+
+        System.out.print(" [ !! ] Ingrese la cantidad de estudiantes (N):  ");
+        N = read.nextInt();
+
+        for (int i = 1; i <= N; i++) {
+            sum = 0;
+            perdidas = 0;
+            for (int j = 1; j <= 8; j++) {
+                if (j == 1) {
+                    System.out.printf("  [ !! ] Ingrese código del estudiante #%d:  ", i);
+                    M[i][j] = read.next();
+                } else {
+                    System.out.printf("   Ingrese nota #%d: ", (j - 1));
+                    M[i][j] = validarNota(read.next());
+
+                    sum = sum + Float.parseFloat(M[i][j]);
+                    if (Float.parseFloat(M[i][j]) < 3) {
+                        perdidas++;
+                    }
+                }
+            }
+            
+            if (perdidas > 3) {
+                count++;
+                temp = temp + M[i][1];
+            }
+            
+            prom = sum / 7;
+            if (prom > mayor) {
+                mayor = prom;
+                codMayor = M[i][1];
+            }
+            sumGeneral = sumGeneral + prom;
+            System.out.printf("   [ !! ]  Promedio del estudiante %s es igual a %f\n", (M[i][1]), prom);
+            System.out.printf("   [ !! ]  El estudiante %s ha perdido %d asignaturas\n\n", M[i][1], perdidas);
+        }
+        promGeneral = sumGeneral / N;
+        System.out.printf(" Hubo %d estudiantes que perdieron mas de 3 materias, son: \n\t%s \n", count, temp);
+        System.out.println(" \nEl promedio general fue de: " + promGeneral);
+        System.out.println(" Estudiante con la mayor nota: " + codMayor);
+        for (int i = 1; i <= N; i++) {
+            for (int j = 1; j <= 8; j++) {
+                System.out.print(M[i][j] + " | ");
+            }
+            System.out.println();
+        }
+    }
