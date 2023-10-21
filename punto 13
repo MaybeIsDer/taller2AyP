@@ -1,0 +1,32 @@
+
+package imnotthatkindoffool;
+
+import java.util.Scanner;
+
+public class Imnotthatkindoffool {
+    static Scanner read = new Scanner (System.in);
+    public static boolean isReal ( String cadena ){
+        for (int i = 0; i < cadena.length(); i++) { 
+                    if (cadena.charAt(i) == '1' || cadena.charAt(i) == '2' || cadena.charAt(i) == '3' ||
+                        cadena.charAt(i) == '4' || cadena.charAt(i) == '5' || cadena.charAt(i) == '6' ||
+                        cadena.charAt(i) == '7' || cadena.charAt(i) == '8' || cadena.charAt(i) == '9' ||
+                        cadena.charAt(i) == '0'){
+                return true;
+            }
+        }
+        return false;
+    }
+    public static void main(String[] args) {
+        // TODO code application logic here
+        String texto;
+        texto = read.nextLine();
+        
+        if (isReal (texto)){
+            System.out.println(" Se ha encontrado un real en la cadena ");
+        } else {
+            System.out.println(" No se ha encontrado un real");
+        }
+        
+    }
+    
+}
